@@ -6,9 +6,12 @@ A modern, full-stack e-commerce platform blending minimalist design with seamles
 
 
 About the Project
+
+
 Aether & Earth is a fully responsive, data-driven clothing and accessories storefront. Built with the MERN stack, it features a premium "glassmorphic" UI, dynamic product filtering, secure JWT-based authentication, and a complete checkout-to-dashboard user flow.
 
 Key Features
+
 Modern UI/UX: Cinematic hero carousels, glassmorphic filter bars, and smooth micro-animations.
 
 Dynamic Catalog: Browse 16 meticulously curated products with real-time category filtering (Men, Women, Kids, Accessories) and price sorting.
