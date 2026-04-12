@@ -24,25 +24,26 @@ Checkout & Order Flow: Secure checkout experience that automatically updates the
 
 Responsive Design: Fully optimized for mobile, tablet, and desktop viewing.
 
-Tech Stack
-Frontend
+Tech Stack:
 
-React (via Vite)
+a. Frontend
 
-Redux Toolkit (State Management)
+1. React (via Vite)
 
-React Router (Navigation)
+2. Redux Toolkit (State Management)
 
-Lucide React (Icons)
+3. React Router (Navigation)
 
-Custom CSS (Glassmorphism & Animations)
+4. Lucide React (Icons)
 
-Backend
+5. Custom CSS (Glassmorphism & Animations)
 
-Node.js & Express.js
+b. Backend
 
-MongoDB & Mongoose (Database & ORM)
+1. Node.js & Express.js
 
-JSON Web Tokens (JWT) for Authentication
+2. MongoDB & Mongoose (Database & ORM)
 
-Cors & Dotenv
+3. JSON Web Tokens (JWT) for Authentication
+
+4. Cors & Dotenv
