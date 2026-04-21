@@ -57,7 +57,7 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         // Ensure this matches your server.js PORT
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
         console.log("Database Sync Successful. Items loaded:", data.length);
         setProducts(data);
       } catch (error) {
