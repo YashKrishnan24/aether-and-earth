@@ -10,14 +10,14 @@ const Dashboard = () => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.auth);
   const [activeTab, setActiveTab] = useState('overview');
 
-  // Check authentication and redirect if not authenticated
+  
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login', { replace: true });
     }
   }, [isAuthenticated, navigate]);
 
-  // Load profile data if user exists but data unavailable
+  
   useEffect(() => {
     if (isAuthenticated && !user) {
       dispatch(getProfile());
@@ -33,7 +33,7 @@ const Dashboard = () => {
     );
   }
 
-  // Prevent rendering if not authenticated
+  
   if (!isAuthenticated || !user) {
     return null;
   }

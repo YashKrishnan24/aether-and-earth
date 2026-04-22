@@ -11,8 +11,6 @@ const Navbar = () => {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [isBumping, setIsBumping] = useState(false);
-  
-  // Live Search States
   const [allProducts, setAllProducts] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
@@ -61,7 +59,6 @@ const Navbar = () => {
     <nav className="navbar glass-nav">
       <div className="nav-container">
         
-        {/* Left Side: Brand & Main Links */}
         <div className="nav-left">
           <Link to="/" className="brand-logo">
             <img src="/logo.png" alt="A&E Logo" className="logo-img" onError={(e) => e.target.style.display='none'} />
@@ -69,7 +66,6 @@ const Navbar = () => {
           </Link>
           
           <div className="nav-links">
-            {/* Categories Dropdown */}
             <div className="dropdown-wrapper">
               <Link to="/collections" className={`nav-item ${isActive('/collections') ? 'active' : ''}`}>
                 <span>Categories</span>
@@ -103,7 +99,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Center/Right: LIVE SEARCH BAR */}
         <div className="search-wrapper">
           <form className="search-bar" onSubmit={handleSearchSubmit}>
             <input 
@@ -142,10 +137,8 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Far Right: Actions */}
         <div className="nav-actions">
           
-          {/* NEW: Mini-Dashboard Account Dropdown */}
           <div className="dropdown-wrapper account-dropdown-wrapper">
             <Link to="/account" className={`action-btn ${isActive('/account') ? 'active' : ''}`}>
               <User size={20} strokeWidth={1.5} />
@@ -162,7 +155,6 @@ const Navbar = () => {
                   </div>
                 </div>
                 
-                {/* Find the mini-dashboard-links section in Navbar.jsx */}
 <div className="mini-dashboard-links">
   <Link to="/account?tab=orders" className="mini-link">
     <Package size={16}/> My Orders
@@ -179,7 +171,6 @@ const Navbar = () => {
             </div>
           </div>
           
-          {/* Cart Button */}
           <Link to="/checkout" className="action-btn cart-btn">
             <div className={`cart-icon-wrapper ${isBumping ? 'bump' : ''}`}>
               <ShoppingCart size={20} strokeWidth={1.5} />
@@ -193,7 +184,6 @@ const Navbar = () => {
       </div>
 
       <style>{`
-        /* Core Navbar Styles */
         .navbar { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; display: flex; align-items: center; background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease; }
         .nav-container { width: 95%; max-width: 1500px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
         .nav-left { display: flex; align-items: center; gap: 40px; }
@@ -205,14 +195,12 @@ const Navbar = () => {
         .dropdown-icon { margin-top: 2px; color: #888; transition: transform 0.3s ease; }
         .nav-item:hover, .nav-item.active { color: var(--accent-sand); }
         
-        /* Shared Dropdown Logic */
         .dropdown-wrapper { position: relative; height: 100%; display: flex; align-items: center; }
         .dropdown-wrapper:hover .dropdown-icon { transform: rotate(180deg); color: var(--accent-sand); }
         .dropdown-menu { position: absolute; top: 80px; left: -20px; opacity: 0; visibility: hidden; transform: translateY(15px); transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1); padding-top: 10px; }
         .dropdown-wrapper:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-content { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 12px; width: 320px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 5px; }
 
-        /* Categories Dropdown Specifics */
         .drop-item { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-radius: 12px; text-decoration: none; color: var(--text-dark); transition: all 0.2s ease; background: transparent; }
         .drop-item:hover { background: #f8f8f8; transform: translateX(5px); }
         .drop-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
@@ -220,7 +208,6 @@ const Navbar = () => {
         .drop-arrow { color: var(--accent-sand); opacity: 0; transform: translateX(-10px); transition: all 0.3s ease; }
         .drop-item:hover .drop-arrow { opacity: 1; transform: translateX(0); }
 
-        /* Live Search */
         .search-wrapper { flex: 1; max-width: 400px; margin-right: 20px; position: relative; }
         .search-bar { display: flex; align-items: center; background: #f5f5f5; padding: 8px 15px 8px 20px; border-radius: 50px; width: 100%; transition: all 0.3s ease; border: 1px solid transparent; }
         .search-bar:focus-within { background: white; border-color: var(--accent-sand); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
@@ -239,7 +226,6 @@ const Navbar = () => {
         .view-all-link { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #fafafa; font-size: 0.85rem; font-weight: 500; color: var(--text-dark); cursor: pointer; transition: 0.2s; }
         .view-all-link:hover { color: var(--accent-sand); background: white; }
 
-        /* Actions Area */
         .nav-actions { display: flex; align-items: center; gap: 30px; height: 80px; }
         .action-btn { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; transition: color 0.2s ease; height: 100%; }
         .action-btn:hover, .action-btn.active { color: var(--accent-sand); }
@@ -247,7 +233,6 @@ const Navbar = () => {
         .cart-icon-wrapper.bump { transform: scale(1.2); }
         .cart-badge-pulse { position: absolute; top: -8px; right: -10px; background: var(--text-dark); color: white; font-size: 0.65rem; min-width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; }
 
-        /* --- NEW: MINI DASHBOARD ACCOUNT MENU --- */
         .account-menu {
           left: auto; /* Align to the right side of the screen */
           right: -20px;
@@ -329,7 +314,7 @@ const Navbar = () => {
         @media (max-width: 1000px) {
           .nav-links, .action-btn span { display: none; }
           .search-wrapper { max-width: 100%; justify-content: center; margin: 0 10px; }
-          .account-dropdown-wrapper .dropdown-menu { display: none; /* Disable complex hover on mobile */ }
+          .account-dropdown-wrapper .dropdown-menu { display: none; }
         }
       `}</style>
     </nav>

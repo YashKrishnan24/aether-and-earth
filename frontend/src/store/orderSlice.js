@@ -7,7 +7,7 @@ const orderSlice = createSlice({
   },
   reducers: {
     addOrder: (state, action) => {
-      // Adds the new order to the beginning of the array
+      
       state.orderHistory.unshift(action.payload);
     },
   },

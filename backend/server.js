@@ -9,13 +9,12 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'], // Add any other ports you use
+  origin: ['http://localhost:5173', 'http://localhost:5174'],
   credentials: true
 }));
 
 app.use(express.json()); 
 
-// Import Routes
 const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
 

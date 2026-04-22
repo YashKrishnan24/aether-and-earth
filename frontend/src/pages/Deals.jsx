@@ -9,11 +9,11 @@ const Deals = () => {
   const [saleItems, setSaleItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Simulated Countdown Timer State
+  
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
 
   useEffect(() => {
-    // Timer Countdown Logic
+    
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         let { hours, minutes, seconds } = prev;
@@ -35,11 +35,11 @@ const Deals = () => {
       try {
         const { data } = await axios.get('http://localhost:5000/api/products');
         
-        // Let's grab 8 random items and apply a 30% discount to them
+        
         const discountedItems = data.slice(0, 8).map(item => ({
           ...item,
           originalPrice: item.price,
-          price: item.price * 0.70 // 30% off
+          price: item.price * 0.70 
         }));
         
         setSaleItems(discountedItems);

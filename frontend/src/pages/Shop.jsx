@@ -14,7 +14,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('featured');
 
-  // Read URL Parameters (Syncs with Navbar and Categories)
+  
   const urlCategory = searchParams.get('category') || 'All';
   const urlSearch = searchParams.get('search') || '';
 
@@ -22,7 +22,7 @@ const Shop = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        // Fetching from your updated MongoDB backend
+        
         const { data } = await axios.get('http://localhost:5000/api/products');
         setProducts(data);
       } catch (error) {
@@ -35,7 +35,7 @@ const Shop = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Update URL when a category pill is clicked
+  
   const handleCategoryChange = (cat) => {
     const newParams = new URLSearchParams(searchParams);
     if (cat === 'All') {
@@ -46,11 +46,11 @@ const Shop = () => {
     setSearchParams(newParams);
   };
 
-  // Improved Filter Engine
+  
   let displayedProducts = products.filter(product => {
     const matchesCategory = urlCategory === 'All' || product.category === urlCategory;
     
-    // Checks name, category, and type for better search precision
+    
     const searchTerm = urlSearch.toLowerCase();
     const matchesSearch = 
       product.name.toLowerCase().includes(searchTerm) || 
@@ -60,7 +60,7 @@ const Shop = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Sorting Logic
+  
   if (sortBy === 'price-asc') {
     displayedProducts.sort((a, b) => a.price - b.price);
   } else if (sortBy === 'price-desc') {

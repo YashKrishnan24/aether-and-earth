@@ -11,7 +11,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Carousel Data Array
+  
   const heroSlides = [
     {
       id: 1,
@@ -36,7 +36,7 @@ const Home = () => {
     }
   ];
 
-  // Auto-advance Carousel
+  
   useEffect(() => {
     const slideTimer = setInterval(() => {
       setCurrentSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
@@ -52,11 +52,11 @@ const Home = () => {
     setCurrentSlide(currentSlide === 0 ? heroSlides.length - 1 : currentSlide - 1);
   };
 
-  // FETCH PRODUCTS FROM MONGODB
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Ensure this matches your server.js PORT
+        
         const response = await axios.get('http://localhost:5000/api/products');
         console.log("Database Sync Successful. Items loaded:", response.data.length);
         setProducts(response.data);

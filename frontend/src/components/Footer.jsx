@@ -7,7 +7,6 @@ const Footer = () => {
     <footer className="footer-wrapper">
       <div className="footer-container">
         
-        {/* Left Side: Brand, Socials, and Newsletter */}
         <div className="footer-left">
           <div className="brand-section">
             <h2>AETHER & EARTH</h2>
@@ -26,10 +25,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Right Side: Navigation Link Columns */}
         <div className="footer-links-grid">
           
-          {/* Column 1 */}
           <div className="link-column">
             <div className="link-group">
               <h4>Customer service</h4>
@@ -54,7 +51,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2 */}
           <div className="link-column">
             <div className="link-group">
               <h4>Product guide</h4>
@@ -81,7 +77,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar: Copyright/Address */}
       <div className="footer-bottom">
         <p>AETHER & EARTH INC. 350 5TH AVENUE, 41ST FL – NY, NY 10118</p>
       </div>
@@ -91,7 +86,7 @@ const Footer = () => {
           background-color: #fdfdfd;
           border-top: 1px solid #eaeaea;
           padding: 80px 5% 30px;
-          margin-top: auto; /* Pushes footer to the bottom of the page */
+          margin-top: auto;
         }
 
         .footer-container {
@@ -102,7 +97,6 @@ const Footer = () => {
           gap: 80px;
         }
 
-        /* --- Left Section --- */
         .footer-left {
           display: flex;
           flex-direction: column;
@@ -192,7 +186,6 @@ const Footer = () => {
           transform: scale(1.05);
         }
 
-        /* --- Right Section (Links Grid) --- */
         .footer-links-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -232,7 +225,6 @@ const Footer = () => {
           color: var(--accent-sand);
         }
 
-        /* --- Bottom Bar --- */
         .footer-bottom {
           margin-top: 80px;
           padding-top: 30px;
@@ -247,7 +239,6 @@ const Footer = () => {
           text-transform: uppercase;
         }
 
-        /* --- Responsive Design --- */
         @media (max-width: 900px) {
           .footer-container {
             grid-template-columns: 1fr;

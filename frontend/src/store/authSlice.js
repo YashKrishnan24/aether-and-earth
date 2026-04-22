@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api/auth';
 
-// Initialize state from localStorage
+
 const storedToken = localStorage.getItem('authToken');
 const storedUser = localStorage.getItem('authUser');
 
@@ -15,7 +15,7 @@ const initialState = {
   error: null,
 };
 
-// Async thunks
+
 export const signup = createAsyncThunk(
   'auth/signup',
   async (credentials, { rejectWithValue }) => {
@@ -164,7 +164,7 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Signup
+  
     builder.addCase(signup.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -180,7 +180,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     });
 
-    // Login
+    
     builder.addCase(login.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -196,7 +196,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     });
 
-    // Get Profile
+    
     builder.addCase(getProfile.pending, (state) => {
       state.loading = true;
     });
@@ -209,27 +209,27 @@ const authSlice = createSlice({
       state.error = action.payload;
     });
 
-    // Update Profile
+    
     builder.addCase(updateProfile.fulfilled, (state, action) => {
       state.user = action.payload.user;
     });
 
-    // Add Shipping Address
+    
     builder.addCase(addShippingAddress.fulfilled, (state, action) => {
       state.user.shippingAddresses = action.payload.shippingAddresses;
     });
 
-    // Remove Shipping Address
+    
     builder.addCase(removeShippingAddress.fulfilled, (state, action) => {
       state.user.shippingAddresses = action.payload.shippingAddresses;
     });
 
-    // Add Payment Method
+    
     builder.addCase(addPaymentMethod.fulfilled, (state, action) => {
       state.user.paymentMethods = action.payload.paymentMethods;
     });
 
-    // Remove Payment Method
+    
     builder.addCase(removePaymentMethod.fulfilled, (state, action) => {
       state.user.paymentMethods = action.payload.paymentMethods;
     });

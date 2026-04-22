@@ -6,13 +6,13 @@ import { addToCart } from '../store/cartSlice';
 import { Plus } from 'lucide-react';
 
 const CategoryPage = () => {
-  const { categoryName } = useParams(); // Gets 'Men', 'Women', etc. from the URL
+  const { categoryName } = useParams(); 
   const dispatch = useDispatch();
   
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Category Metadata for the Eye-Catchy Hero Sections
+  
   const categoryData = {
     Men: {
       title: "Men's Collection",
@@ -27,16 +27,16 @@ const CategoryPage = () => {
     Kids: {
       title: "Kids' Collection",
       subtitle: "Playful, durable comfort for little ones.",
-      image: "https://images.unsplash.com/photo-1519241047957-be31d7379a5d?q=80&w=2000"
+      image: "https://static.vecteezy.com/system/resources/previews/026/911/393/non_2x/fashion-model-kids-free-photo.jpg"
     },
     Accessories: {
       title: "Accessories",
       subtitle: "The perfect finishing touches to elevate any look.",
-      image: "https://images.unsplash.com/photo-1511499767390-91f99f73948c?q=80&w=2000"
+      image: "https://effortlessgent.com/wp-content/uploads/2023/03/feat-cool-mens-accessories.jpg"
     }
   };
 
-  // Fallback in case a weird URL is typed
+  
   const currentCategory = categoryData[categoryName] || {
     title: categoryName,
     subtitle: "Explore our curated selection.",
@@ -48,7 +48,7 @@ const CategoryPage = () => {
       setLoading(true);
       try {
         const { data } = await axios.get('http://localhost:5000/api/products');
-        // Filter products immediately based on the URL
+        
         const filtered = data.filter(p => p.category === categoryName);
         setProducts(filtered);
       } catch (error) {
@@ -58,7 +58,7 @@ const CategoryPage = () => {
     };
     
     fetchProducts();
-    // Scroll to top when switching categories
+    
     window.scrollTo(0, 0); 
   }, [categoryName]);
 

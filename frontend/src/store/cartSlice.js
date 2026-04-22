@@ -18,7 +18,7 @@ const cartSlice = createSlice({
       }
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
-    // NEW: Function to clear the cart after payment
+    
     clearCart: (state) => {
       state.cartItems = [];
       localStorage.removeItem('cartItems');
@@ -26,6 +26,6 @@ const cartSlice = createSlice({
   }
 });
 
-// Make sure to export clearCart here!
+
 export const { addToCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

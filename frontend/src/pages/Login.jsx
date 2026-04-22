@@ -10,19 +10,19 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Check if we were redirected from another page (like /checkout)
+  
   const destination = location.state?.from || '/account';
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsAuthenticating(true);
     
-    // Simulate Login Verification
+    
     setTimeout(() => {
       setIsAuthenticating(false);
-      // 1. Save auth state to browser storage
+      
       localStorage.setItem('isAuthenticated', 'true');
-      // 2. Redirect to the intended destination (Checkout or Account)
+      
       navigate(destination);
     }, 1500);
   };

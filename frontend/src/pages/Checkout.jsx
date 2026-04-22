@@ -15,21 +15,21 @@ const Checkout = () => {
 
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0) || 0;
 
-  // --- AUTH GUARD LOGIC ---
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       const isAuthenticated = localStorage.getItem('isAuthenticated');
       if (!isAuthenticated) {
-        // Send to login, but tell Login to send them back here!
+        
         navigate('/login', { state: { from: '/checkout' } });
       } else {
-        setIsVerifyingAuth(false); // User is logged in, show checkout
+        setIsVerifyingAuth(false); 
       }
     }, 400);
     return () => clearTimeout(timer);
   }, [navigate]);
 
-  // Form States
+  
   const [cardNumber, setCardNumber] = useState('');
   const [cardBrand, setCardBrand] = useState('unknown');
 
@@ -51,7 +51,7 @@ const Checkout = () => {
       setIsProcessing(false);
       setPaymentSuccess(true);
       
-      // CREATE ORDER & SAVE TO DASHBOARD
+      
       const newOrder = {
         id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),

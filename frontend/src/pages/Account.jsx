@@ -10,17 +10,17 @@ const Account = () => {
   
   const [currentTab, setCurrentTab] = useState(searchParams.get('tab') || 'dashboard');
   
-  // DYNAMIC ORDERS STATE
+  
   const [myOrders, setMyOrders] = useState([]);
 
   useEffect(() => {
-    // Check if user is logged in
+    
     if (!localStorage.getItem('isAuthenticated')) {
       navigate('/login');
       return;
     }
     
-    // Load dynamic orders from storage
+    
     const savedOrders = JSON.parse(localStorage.getItem('myOrders') || '[]');
     setMyOrders(savedOrders);
 
@@ -36,7 +36,6 @@ const Account = () => {
     navigate('/login');
   };
 
-  // Payment State
   const [showAddForm, setShowAddForm] = useState(false);
   const [paymentMethods] = useState([
     { id: 1, type: "Card", provider: "Visa", last4: "4242", expiry: "12/28", isDefault: true },
@@ -190,7 +189,7 @@ const Account = () => {
       </div>
 
       <style>{`
-        /* Keeping your exact CSS from previous iterations */
+        
         .account-page-bg { background: #fcfcfc; min-height: 100vh; padding: 40px 5%; }
         .account-layout { display: grid; grid-template-columns: 280px 1fr; gap: 50px; max-width: 1400px; margin: 0 auto; }
         .account-nav-sidebar { background: white; border-radius: 24px; padding: 30px 20px; border: 1px solid #f0f0f0; height: fit-content; position: sticky; top: 120px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }

@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide a password'],
     minlength: 6,
-    select: false, // Don't return password by default
+    select: false,
   },
   avatar: {
     type: String,
@@ -46,8 +46,8 @@ const userSchema = new mongoose.Schema({
     {
       id: mongoose.Schema.Types.ObjectId,
       type: { type: String, enum: ['card', 'upi', 'netbanking'] },
-      cardNumber: String, // Last 4 digits only
-      cardBrand: String, // Visa, Mastercard, Amex
+      cardNumber: String,
+      cardBrand: String,
       expiryMonth: String,
       expiryYear: String,
       upiId: String,
@@ -79,11 +79,9 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// Hash password before saving
 userSchema.pre('save', async function (next) {
   const user = this;
 
-  // Only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) return next();
 
   try {
@@ -95,7 +93,6 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-// Method to compare passwords
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

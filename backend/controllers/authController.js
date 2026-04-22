@@ -1,21 +1,16 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-// Generate JWT Token
 const generateToken = (id, email) => {
   return jwt.sign({ id, email }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE || '7d',
   });
 };
 
-// @route   POST /auth/signup
-// @desc    Register a new user
-// @access  Public
 exports.signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Validate input
     if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
@@ -23,7 +18,6 @@ exports.signup = async (req, res) => {
       });
     }
 
-    // Check if user already exists
     let user = await User.findOne({ email: email.toLowerCase() });
     if (user) {
       return res.status(400).json({
@@ -32,20 +26,17 @@ exports.signup = async (req, res) => {
       });
     }
 
-    // Create new user
     user = new User({
       name,
       email: email.toLowerCase(),
       password,
-      aetherPoints: 100, // Welcome bonus
+      aetherPoints: 100,
     });
 
     await user.save();
 
-    // Generate token
     const token = generateToken(user._id, user.email);
 
-    // Return user data and token (exclude password)
     res.status(201).json({
       success: true,
       message: 'User registered successfully',
@@ -66,14 +57,10 @@ exports.signup = async (req, res) => {
   }
 };
 
-// @route   POST /auth/login
-// @desc    Login user
-// @access  Public
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate input
     if (!email || !password) {
       return res.status(400).json({
         success: false,
@@ -81,7 +68,6 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Find user by email (include password field)
     const user = await User.findOne({ email: email.toLowerCase() }).select(
       '+password'
     );
@@ -93,7 +79,6 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Check password
     const isPasswordMatch = await user.matchPassword(password);
     if (!isPasswordMatch) {
       return res.status(401).json({
@@ -102,10 +87,8 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Generate token
     const token = generateToken(user._id, user.email);
 
-    // Return user data and token
     res.status(200).json({
       success: true,
       message: 'Logged in successfully',
@@ -126,9 +109,6 @@ exports.login = async (req, res) => {
   }
 };
 
-// @route   GET /auth/me
-// @desc    Get current user profile
-// @access  Private
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -163,9 +143,6 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-// @route   PUT /auth/update-profile
-// @desc    Update user profile
-// @access  Private
 exports.updateProfile = async (req, res) => {
   try {
     const { name, phone, avatar } = req.body;
@@ -201,16 +178,12 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-// @route   POST /auth/add-shipping-address
-// @desc    Add shipping address
-// @access  Private
 exports.addShippingAddress = async (req, res) => {
   try {
     const { firstName, lastName, street, city, state, zipCode, country, phone, isDefault } = req.body;
 
     const user = await User.findById(req.userId);
 
-    // If this is the default address, remove default from others
     if (isDefault) {
       user.shippingAddresses.forEach(addr => {
         addr.isDefault = false;
@@ -244,9 +217,6 @@ exports.addShippingAddress = async (req, res) => {
   }
 };
 
-// @route   DELETE /auth/remove-shipping-address/:addressId
-// @desc    Remove shipping address
-// @access  Private
 exports.removeShippingAddress = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -268,16 +238,12 @@ exports.removeShippingAddress = async (req, res) => {
   }
 };
 
-// @route   POST /auth/add-payment-method
-// @desc    Add payment method
-// @access  Private
 exports.addPaymentMethod = async (req, res) => {
   try {
     const { type, cardNumber, cardBrand, expiryMonth, expiryYear, upiId, bankName, accountLast4, isDefault } = req.body;
 
     const user = await User.findById(req.userId);
 
-    // If this is the default method, remove default from others
     if (isDefault) {
       user.paymentMethods.forEach(method => {
         method.isDefault = false;
@@ -286,7 +252,7 @@ exports.addPaymentMethod = async (req, res) => {
 
     user.paymentMethods.push({
       type,
-      cardNumber, // Only store last 4 digits in production
+      cardNumber,
       cardBrand,
       expiryMonth,
       expiryYear,
@@ -311,9 +277,6 @@ exports.addPaymentMethod = async (req, res) => {
   }
 };
 
-// @route   DELETE /auth/remove-payment-method/:methodId
-// @desc    Remove payment method
-// @access  Private
 exports.removePaymentMethod = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -335,9 +298,6 @@ exports.removePaymentMethod = async (req, res) => {
   }
 };
 
-// @route   POST /auth/logout
-// @desc    Logout user (frontend clears token)
-// @access  Private
 exports.logout = (req, res) => {
   res.status(200).json({
     success: true,

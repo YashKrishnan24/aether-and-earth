@@ -6,15 +6,12 @@ const Product = require('./models/Product');
 dotenv.config();
 connectDB();
 
-// THE UPDATED PRODUCT ARRAY: IMAGES AND DESCRIPTIONS MATCH PERFECTLY
 const products = [
-  // MEN'S CATEGORY (NEW: HAND-PICKED ACCURATE IMAGES)
   { 
     name: "Casual Brown Overshirt", 
     category: "Men", 
     type: "Shirts", 
     price: 85, 
-    // Image is now a men's brown corduroy overshirt/jacket
     image: "https://img105.savana.com/goods-pic/28953e6048ba4efd86e7f7a8e3332b8a_w1440_q90.webp",
     description: "A versatile earthy brown overshirt perfect for layering."
   },
@@ -23,7 +20,6 @@ const products = [
     category: "Men", 
     type: "Shirts", 
     price: 70, 
-    // Image is now a light blue men's knit polo
     image: "http://www.oxknit.com/cdn/shop/products/polo341.jpg?v=1663743680",
     description: "Classic vintage knit polo with a tailored fit."
   },
@@ -32,7 +28,6 @@ const products = [
     category: "Men", 
     type: "Shirts", 
     price: 95, 
-    // Image is now a men's maroon button-down dress shirt
     image: "https://cdn11.bigcommerce.com/s-2iveh3ifm0/images/stencil/1920w/products/2109/13768/apiebzt6z__27943.1592328664.jpg?c=2",
     description: "Crisp maroon dress shirt for formal and semi-formal occasions."
   },
@@ -41,7 +36,6 @@ const products = [
     category: "Men", 
     type: "Outerwear", 
     price: 120, 
-    // Image is now a classic wool/leather letterman jacket
     image: "https://i.etsystatic.com/18714430/r/il/a3cf51/6368215368/il_1080xN.6368215368_qo9i.jpg",
     description: "Classic wool and leather varsity jacket."
   },
@@ -50,12 +44,10 @@ const products = [
     category: "Men", 
     type: "Outerwear", 
     price: 195, 
-    // Image is now a men's tan/camel wool overcoat
     image: "https://peterjacksons.com/cdn/shop/files/mens-coat-chocolate-cashmere-WT25-SC02-30.webp?v=1746076857&width=2000",
     description: "Classic double-breasted camel wool overcoat."
   },
 
-  // WOMEN'S CATEGORY (NAMES AND DESCRIPTIONS CORRECTED PREVIOUSLY)
   { 
     name: "White Tulle Midi Skirt", 
     category: "Women", 
@@ -89,7 +81,6 @@ const products = [
     description: "Casual summer button-down denim shirt dress."
   },
 
-  // KIDS' CATEGORY (INTACT)
   { 
     name: "Organic Cotton Onesie", 
     category: "Kids", 
@@ -123,7 +114,6 @@ const products = [
     description: "Cozy knit sweater with fun graphic details."
   },
 
-  // ACCESSORIES CATEGORY (INTACT)
   { 
     name: "Canvas Weekender", 
     category: "Accessories", 
@@ -158,12 +148,9 @@ const products = [
   }
 ];
 
-// THE IMPORT LOGIC (Full Database Wipe and Re-seed)
 const importData = async () => {
   try {
-    // This wipes the old database records containing the warehouse images
     await Product.deleteMany(); 
-    // This inserts the new array containing the perfectly matched images and descriptions
     await Product.insertMany(products); 
     console.log('Data Imported Successfully!');
     process.exit();
