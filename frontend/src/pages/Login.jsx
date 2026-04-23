@@ -38,7 +38,7 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="auth-form">
               <div className="input-group">
                 <label>Email</label>
-                <input type="email" placeholder="yash@gmail.com" required />
+                <input type="email" placeholder="xyz@gmail.com" required />
               </div>
               <div className="input-group">
                 <label>Password</label>
