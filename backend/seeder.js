@@ -1,8 +1,9 @@
+//import necessary modules and models
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const Product = require('./models/Product'); 
-
+//configure environment variables and connect to database
 dotenv.config();
 connectDB();
 
@@ -147,7 +148,7 @@ const products = [
     description: "Elegant stainless steel chronograph timepiece."
   }
 ];
-
+//import function to seed database with sample products
 const importData = async () => {
   try {
     await Product.deleteMany(); 

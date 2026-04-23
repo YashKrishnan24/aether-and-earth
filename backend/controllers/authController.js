@@ -1,23 +1,23 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
+// generate jwt token
 const generateToken = (id, email) => {
   return jwt.sign({ id, email }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE || '7d',
   });
 };
-
+//signup function
 exports.signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
+    //validate input
     if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
         message: 'Please provide name, email, and password',
       });
     }
-
+    //check if user already exists
     let user = await User.findOne({ email: email.toLowerCase() });
     if (user) {
       return res.status(400).json({
@@ -25,7 +25,7 @@ exports.signup = async (req, res) => {
         message: 'Email already registered',
       });
     }
-
+  //create new user
     user = new User({
       name,
       email: email.toLowerCase(),
@@ -34,9 +34,9 @@ exports.signup = async (req, res) => {
     });
 
     await user.save();
-
+    //generate token
     const token = generateToken(user._id, user.email);
-
+    //return response
     res.status(201).json({
       success: true,
       message: 'User registered successfully',
@@ -56,7 +56,7 @@ exports.signup = async (req, res) => {
     });
   }
 };
-
+//login function
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -67,18 +67,18 @@ exports.login = async (req, res) => {
         message: 'Please provide email and password',
       });
     }
-
+   //find user by email and include password field
     const user = await User.findOne({ email: email.toLowerCase() }).select(
       '+password'
     );
-
+    //validate input
     if (!user) {
       return res.status(401).json({
         success: false,
         message: 'Invalid credentials',
       });
     }
-
+   //check password
     const isPasswordMatch = await user.matchPassword(password);
     if (!isPasswordMatch) {
       return res.status(401).json({
@@ -108,7 +108,7 @@ exports.login = async (req, res) => {
     });
   }
 };
-
+//get profile
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -142,7 +142,7 @@ exports.getProfile = async (req, res) => {
     });
   }
 };
-
+//to update profile
 exports.updateProfile = async (req, res) => {
   try {
     const { name, phone, avatar } = req.body;
@@ -177,7 +177,7 @@ exports.updateProfile = async (req, res) => {
     });
   }
 };
-
+//add shipping address
 exports.addShippingAddress = async (req, res) => {
   try {
     const { firstName, lastName, street, city, state, zipCode, country, phone, isDefault } = req.body;
@@ -216,7 +216,7 @@ exports.addShippingAddress = async (req, res) => {
     });
   }
 };
-
+//remove shipping address
 exports.removeShippingAddress = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -237,7 +237,7 @@ exports.removeShippingAddress = async (req, res) => {
     });
   }
 };
-
+//add payment method
 exports.addPaymentMethod = async (req, res) => {
   try {
     const { type, cardNumber, cardBrand, expiryMonth, expiryYear, upiId, bankName, accountLast4, isDefault } = req.body;
@@ -276,7 +276,7 @@ exports.addPaymentMethod = async (req, res) => {
     });
   }
 };
-
+//remove payment method
 exports.removePaymentMethod = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -297,7 +297,7 @@ exports.removePaymentMethod = async (req, res) => {
     });
   }
 };
-
+//logout
 exports.logout = (req, res) => {
   res.status(200).json({
     success: true,

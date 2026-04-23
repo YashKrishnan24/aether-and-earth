@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/productModel');
 const { seedProducts } = require('../controllers/productController');
-
+//get product route
 router.get('/', async (req, res) => {
   try {
     const products = await Product.find({});
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: "Server Error: Could not fetch products" });
   }
 });
-
+//seed products route
 router.post('/seed', seedProducts);
 
 module.exports = router;
