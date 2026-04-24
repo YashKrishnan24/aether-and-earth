@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { clearCart } from '../store/cartSlice';
 import { CheckCircle, CreditCard, Lock, Loader2 } from 'lucide-react';
-
+//checkout page creation of object
 const Checkout = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();

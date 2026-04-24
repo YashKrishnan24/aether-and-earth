@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+//url link to backend auth routes, adjust as needed for production
 const API_URL = 'http://localhost:5000/api/auth';
-
 
 const storedToken = localStorage.getItem('authToken');
 const storedUser = localStorage.getItem('authUser');
@@ -14,7 +13,6 @@ const initialState = {
   loading: false,
   error: null,
 };
-
 
 export const signup = createAsyncThunk(
   'auth/signup',
@@ -179,8 +177,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
-
-    
+ 
     builder.addCase(login.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -195,8 +192,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
-
-    
+ 
     builder.addCase(getProfile.pending, (state) => {
       state.loading = true;
     });
@@ -213,23 +209,19 @@ const authSlice = createSlice({
     builder.addCase(updateProfile.fulfilled, (state, action) => {
       state.user = action.payload.user;
     });
-
-    
+  
     builder.addCase(addShippingAddress.fulfilled, (state, action) => {
       state.user.shippingAddresses = action.payload.shippingAddresses;
     });
-
-    
+ 
     builder.addCase(removeShippingAddress.fulfilled, (state, action) => {
       state.user.shippingAddresses = action.payload.shippingAddresses;
     });
-
-    
+   
     builder.addCase(addPaymentMethod.fulfilled, (state, action) => {
       state.user.paymentMethods = action.payload.paymentMethods;
     });
-
-    
+  
     builder.addCase(removePaymentMethod.fulfilled, (state, action) => {
       state.user.paymentMethods = action.payload.paymentMethods;
     });
