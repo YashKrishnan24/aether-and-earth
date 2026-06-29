@@ -1,6 +1,6 @@
 
 
-Aether & Earth
+Aether & Earth :
 A modern, full-stack e-commerce platform blending minimalist design with seamless functionality.
 
 
