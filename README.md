@@ -24,7 +24,7 @@ Checkout & Order Flow: Secure checkout experience that automatically updates the
 
 Responsive Design: Fully optimized for mobile, tablet, and desktop viewing.
 
-Tech Stack:
+Tech Stack used:
 
 a. Frontend
 
