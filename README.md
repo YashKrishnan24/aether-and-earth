@@ -26,7 +26,7 @@ Responsive Design: Fully optimized for mobile, tablet, and desktop viewing.
 
 Tech Stack used:
 
-a. Frontend
+a. Frontend-
 
 1. React (via Vite)
 
@@ -38,7 +38,7 @@ a. Frontend
 
 5. Custom CSS (Glassmorphism & Animations)
 
-b. Backend
+b. Backend-
 
 1. Node.js & Express.js
 
